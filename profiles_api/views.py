@@ -7,6 +7,8 @@ from rest_framework import viewsets
 
 from profiles_api import serializers
 
+from profiles_api import models
+
 # All of below code covers an APIView to support your endpoint for http methods
 class HelloApiView(APIView):
     """Test API View"""
@@ -104,3 +106,9 @@ class HelloViewSet(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         """Handle removing an object"""
         return Response({'http_method': 'DELETE'})
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handle createing and updating profiles"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
